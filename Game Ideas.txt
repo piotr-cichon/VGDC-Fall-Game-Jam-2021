@@ -1,0 +1,21 @@
+Lore:
+
+Mechanics:
+-move left and right
+-jump
+-double jump
+-dash/teleport
+-running
+-maybe rolling
+
+Enemies:
+-if they touch, you lose health(or lose the superpower)
+-make them your pets(you can pet them if you want)
+-you can change the perspective of the player to the pets
+-they can teleport to where you are
+-they can hold items
+
+Map:
+-moving platforms
+-spikes and traps(mines)
+-score grows with the amount of pets you have
