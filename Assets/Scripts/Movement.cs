@@ -11,13 +11,13 @@ public class Movement : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
 
     [Header("Movement speeds")] [SerializeField]
-    private float moveSpeed;
+    private float moveSpeed = 5;
 
-    [SerializeField] private float jumpSpeed;
-    [SerializeField] private bool doubleJump;
+    [SerializeField] private float jumpSpeed = 6;
+    [SerializeField] private bool doubleJump = true;
 
 
-    [SerializeField] private bool _isGrounded;
+    private bool _isGrounded;
     private int _jumpCount;
     private bool _jumping;
 
@@ -38,6 +38,7 @@ public class Movement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
     }
+    
 
     void Update()
     {
