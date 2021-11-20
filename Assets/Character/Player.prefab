@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7615706853353606960}
   - component: {fileID: 7615706853353606961}
   - component: {fileID: 7615706853353606926}
+  - component: {fileID: 1543620858}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7615706853353606964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 7615706854587102024}
   m_Father: {fileID: 0}
@@ -123,8 +124,9 @@ MonoBehaviour:
     m_Bits: 64
   groundCheck: {fileID: 7615706854587102024}
   groundCheckRadius: 0.2
-  moveSpeed: 2
-  jumpSpeed: 6
+  moveSpeed: 5
+  jumpSpeed: 7
+  doubleJump: 1
   _isGrounded: 0
 --- !u!50 &7615706853353606961
 Rigidbody2D:
@@ -156,13 +158,25 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 7615706853353606964}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b26525811bb727c46b2c100b7f76e04c, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!114 &1543620858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7615706853353606964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97f026d23f52134f921e23eb4662d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7615706854587102027
 GameObject:
   m_ObjectHideFlags: 0

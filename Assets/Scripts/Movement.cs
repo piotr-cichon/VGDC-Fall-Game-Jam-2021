@@ -22,11 +22,12 @@ public class Movement : MonoBehaviour
     private bool _jumping;
 
     private bool _faceRight = true;
-    private Rigidbody2D _rb;
     private float _horizontalMovement;
-
+    
+    private Rigidbody2D _rb;
     private Animator _animator;
-
+    private SpriteRenderer _sprite;
+    
     private static readonly int Moving = Animator.StringToHash("moving");
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
     private static readonly int JumpBool = Animator.StringToHash("jump");
@@ -35,6 +36,7 @@ public class Movement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -42,7 +44,7 @@ public class Movement : MonoBehaviour
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _isGrounded = CheckGround();
 
-        if ((_isGrounded || _jumpCount < 2 && _rb.velocity.y > 0) &&
+        if ((_isGrounded || _jumpCount < 2 && _rb.velocity.y > -0.1f) &&
             Input.GetKeyDown(KeyCode.Space))
         {
             _jumpCount++;
@@ -89,17 +91,21 @@ public class Movement : MonoBehaviour
         _rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
     }
 
+    private void FlipSprite()
+    {
+        _sprite.flipX = !_sprite.flipX;
+    }
     private void ChangeOrientation(float movX)
     {
         if (_faceRight && movX < 0)
         {
             _faceRight = false;
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            FlipSprite();
         }
         else if (_faceRight == false && movX > 0)
         {
             _faceRight = true;
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            FlipSprite();
         }
     }
 
