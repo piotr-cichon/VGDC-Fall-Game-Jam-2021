@@ -116,7 +116,6 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print(_horizontalMovement);
         float movX = _horizontalMovement * moveSpeed;
         ChangeOrientation(movX);
         _rb.velocity = new Vector2(movX, _rb.velocity.y);
