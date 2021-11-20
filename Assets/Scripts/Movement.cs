@@ -32,6 +32,10 @@ public class Movement : MonoBehaviour
     private static readonly int YVelocity = Animator.StringToHash("yVelocity");
     private static readonly int JumpBool = Animator.StringToHash("jump");
 
+    public void SetDoubleJump()
+    {
+        doubleJump = true;
+    }
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -45,8 +49,8 @@ public class Movement : MonoBehaviour
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _isGrounded = CheckGround();
 
-        if ((_isGrounded || _jumpCount < 2 && _rb.velocity.y > -0.1f) &&
-            Input.GetKeyDown(KeyCode.Space))
+        if (((_isGrounded || ( doubleJump && _jumpCount < 2 && _rb.velocity.y > -0.1f)) &&
+            Input.GetKeyDown(KeyCode.Space)))
         {
             _jumpCount++;
             _jumping = true;
