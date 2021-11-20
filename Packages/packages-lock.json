@@ -72,6 +72,16 @@
       "source": "builtin",
       "dependencies": {}
     },
+<<<<<<< HEAD
+=======
+    "com.unity.cinemachine": {
+      "version": "2.6.11",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+>>>>>>> refs/remotes/origin/main
     "com.unity.collab-proxy": {
       "version": "1.15.1",
       "depth": 0,
