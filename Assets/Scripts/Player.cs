@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootingTransformRight;
     [SerializeField] private Transform shootingTransformLeft;
+    [SerializeField] private int hp;
 
     [SerializeField] private float defaultXForce = 100;
     private float _xForce;
@@ -57,6 +58,15 @@ public class Player : MonoBehaviour
             ball.GetComponent<Rigidbody2D>().AddForce(new Vector2(_xForce,_ballThrowPower),ForceMode2D.Force);
             ball.GetComponent<Ball>().SetPlayer(this);
             _ballThrowPower = initialSpeed;
+        }
+    }
+
+    public void DecrementHp()
+    {
+        hp--;
+        if (hp == 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }
