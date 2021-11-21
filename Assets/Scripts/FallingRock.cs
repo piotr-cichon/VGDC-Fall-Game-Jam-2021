@@ -49,7 +49,13 @@ public class FallingRock : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Fruit fruit = other.GetComponent<Fruit>();
         Player player = other.GetComponent<Player>();
+        if (fruit != null)
+        {
+            Destroy(fruit.gameObject);
+            return;
+        }
         if (player != null)
         {
             if (transform.position.y > player.transform.position.y)

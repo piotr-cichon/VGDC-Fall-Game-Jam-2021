@@ -12,11 +12,17 @@ public class FlagWon : MonoBehaviour
     private bool _animFinished = false;
     private static readonly int Roll = Animator.StringToHash("roll");
     private bool _started = false;
-    
+
+    private IEnumerator LoadSceneAfter2Seconds()
+    {
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     private IEnumerator Wait()
     {
         yield return new WaitForSeconds(roll.length + 0.1f);
         _animFinished = true;
+        StartCoroutine(LoadSceneAfter2Seconds());
     }
 
     private void Update()
