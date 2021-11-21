@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform shootingTransformRight;
     [SerializeField] private Transform shootingTransformLeft;
     [SerializeField] private int hp;
+    [SerializeField] private GameObject _heartArray;
+    private int _heartIndex;
 
     [SerializeField] private float defaultXForce = 100;
 
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         
         _cinemachine = FindObjectOfType<CinemachineVirtualCamera>();
+        _heartIndex = _heartArray.transform.childCount - 1;
     }
 
     private IEnumerator SwitchSceneAgain()
@@ -155,6 +158,7 @@ public class Player : MonoBehaviour
     public void DecrementHp()
     {
         hp--;
+        _heartArray.transform.GetChild(hp).gameObject.SetActive(false);
         if (hp == 0)
         {
             Die();
