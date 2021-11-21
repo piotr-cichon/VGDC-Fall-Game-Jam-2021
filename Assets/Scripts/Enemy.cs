@@ -9,8 +9,11 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int deviation;
     [SerializeField] private double height;
+    [SerializeField] private bool canBePetted = true;
     [SerializeField] private AnimatorOverrideController petAnimator;
-
+    
+    [SerializeField] private SpriteRenderer selectedImage;
+    [SerializeField] private SpriteRenderer isAPet;
 
     private Animator _animator;
     private Movement _movement;
@@ -18,19 +21,22 @@ public class Enemy : MonoBehaviour
     private int _direction;
     private SpriteRenderer _spriteRenderer;
     private bool _pet;
-    
+
     void Start()
     {
+        isAPet.enabled = false;
+        selectedImage.enabled = false;
+        
         _initialPosition = transform.position;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _movement = GetComponent<Movement>();
         _animator = GetComponent<Animator>();
         _direction = 1;
     }
-    
+
     void Update()
     {
-        transform.position += new Vector3(_direction, 0,0) * Time.deltaTime;
+        transform.position += new Vector3(_direction, 0, 0) * Time.deltaTime;
         if (!_pet)
         {
             if (_initialPosition.x + deviation <= transform.position.x)
@@ -46,26 +52,42 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            
         }
     }
 
+    public void ActivatePet()
+    {
+        isAPet.enabled = false;
+        _movement.enabled = true;
+        selectedImage.enabled = true;
+    }
+
+    public void DisablePet()
+    {
+        isAPet.enabled = true;
+        _movement.enabled = false;
+        selectedImage.enabled = false;
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.collider.GetComponent<Player>() != null)
+        if (canBePetted && !_pet && other.collider.GetComponent<Player>() != null)
         {
-            Vector3 playerPosition = other.collider.GetComponent<Transform>().position;
+            Player player = other.collider.GetComponent<Player>();
+            Vector3 playerPosition = other.transform.position;
             Vector3 enemyPosition = transform.position;
             if (playerPosition.y - height >= enemyPosition.y)
-            {   
-                Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+            {
+                isAPet.enabled = true;
+                if(gameObject.GetComponent<Rigidbody2D>() == null)
+                    gameObject.AddComponent<Rigidbody2D>();
+                Debug.Log(name + " is a pet right now");
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                GetComponent<SpriteRenderer>().flipX = false;
                 rb.freezeRotation = true;
-                _direction = 0;
                 _pet = true;
-                _spriteRenderer.flipX = other.gameObject.GetComponent<SpriteRenderer>().flipX;
-                _movement.enabled = true;
                 _animator.runtimeAnimatorController = petAnimator;
-                Destroy(this);
+                player.AddPetEnemy(this);
+                this.enabled = false; // disable the script
             }
         }
     }

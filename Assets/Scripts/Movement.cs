@@ -10,11 +10,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.2f;
 
-    [Header("Movement speeds")] [SerializeField]
-    private float moveSpeed = 5;
+    [Header("Movement speeds")]
+    [SerializeField] private float moveSpeed = 5;
 
     [SerializeField] private float jumpSpeed = 6;
-    [SerializeField] private bool doubleJump = true;
+    public bool doubleJump = false;
 
 
     private bool _isGrounded;
