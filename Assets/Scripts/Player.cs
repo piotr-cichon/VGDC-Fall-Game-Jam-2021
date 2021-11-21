@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootingTransformRight;
     [SerializeField] private Transform shootingTransformLeft;
+    [SerializeField] private int hp;
 
     [SerializeField] private float defaultXForce = 100;
 
@@ -87,7 +88,6 @@ public class Player : MonoBehaviour
             _ballThrowPower = initialSpeed;
         }
     }
-
     private void EnablePlayer()
     {
         _petIndex = 0;
@@ -99,13 +99,14 @@ public class Player : MonoBehaviour
     {
         _movement.enabled = false;
     }
+
     public void Update()
     {
-        if(_useTeleport)
+        if (_useTeleport)
             TeleportBall();
         if (Input.GetKeyUp(changePet))
         {
-            if(_previoursPet != null)
+            if (_previoursPet != null)
                 _previoursPet.DisablePet();
             if (_petIndex < _pets.Count)
             {
@@ -125,9 +126,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyUp(resetPlayer))
         {
-            if(_previoursPet != null)
+            if (_previoursPet != null)
                 _previoursPet.DisablePet();
             EnablePlayer();
+        }
+    }
+
+    public void DecrementHp()
+    {
+        hp--;
+        if (hp == 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

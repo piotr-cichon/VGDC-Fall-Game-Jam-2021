@@ -92,7 +92,6 @@ public class Movement : MonoBehaviour
 
     private void Jump()
     {
-        print("Jump");
         _rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
     }
 
