@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 1864799172854658028}
   - component: {fileID: 1864799172854658019}
   - component: {fileID: 1864799172854658018}
-  - component: {fileID: 1864799172854658017}
   - component: {fileID: 1864799172854658016}
   m_Layer: 6
   m_Name: Enemy
@@ -208,22 +207,6 @@ MonoBehaviour:
   petAnimator: {fileID: 22100000, guid: 6a5cfd136293bf149be2eb3fa8da72ed, type: 2}
   selectedImage: {fileID: 1864799173386566288}
   isAPet: {fileID: 1283524978}
---- !u!70 &1864799172854658017
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864799172854658022}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.028060198, y: -0.00000011920929}
-  m_Size: {x: 0.7443414, y: 0.8129327}
-  m_Direction: 0
 --- !u!114 &1864799172854658016
 MonoBehaviour:
   m_ObjectHideFlags: 0

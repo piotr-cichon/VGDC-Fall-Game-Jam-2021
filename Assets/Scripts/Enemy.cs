@@ -60,10 +60,12 @@ public class Enemy : MonoBehaviour
         isAPet.enabled = false;
         _movement.enabled = true;
         selectedImage.enabled = true;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void DisablePet()
     {
+        GetComponent<Rigidbody2D>().constraints |= RigidbodyConstraints2D.FreezePositionX;
         isAPet.enabled = true;
         _movement.enabled = false;
         selectedImage.enabled = false;
@@ -82,6 +84,7 @@ public class Enemy : MonoBehaviour
                     gameObject.AddComponent<Rigidbody2D>();
                 Debug.Log(name + " is a pet right now");
                 Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
                 GetComponent<SpriteRenderer>().flipX = false;
                 rb.freezeRotation = true;
                 _pet = true;

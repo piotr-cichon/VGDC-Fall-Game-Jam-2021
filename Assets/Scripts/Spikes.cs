@@ -23,7 +23,6 @@ public class Spikes : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        print("Collision spike");
         if (other.collider.GetComponent<Player>() != null && !_decrement)
         {
             _decrement = true;
