@@ -39,6 +39,8 @@ public class Player : MonoBehaviour
 
     private CinemachineVirtualCamera _cinemachine;
 
+    private int _score;
+
     private void Awake()
     {
         _movement = GetComponent<Movement>();
@@ -163,5 +165,10 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void IncrementScore()
+    {
+        _score++;
     }
 }

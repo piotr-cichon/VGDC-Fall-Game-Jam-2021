@@ -13,8 +13,8 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (_player != null)
-        {   
-            print(other.gameObject.name);
+        {
+            if (other.transform.GetComponent<Fruit>() != null) return;
             _player.transform.position = other.contacts[0].point + new Vector2(0,2f);
             Destroy(gameObject);
         }
