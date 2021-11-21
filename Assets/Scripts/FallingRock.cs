@@ -57,10 +57,7 @@ public class FallingRock : MonoBehaviour
                 player.Die();
                 print("Hit player");
             }
-            // if (Physics2D.Raycast(groundCheck.position, Vector2.down, playerHeight, ground))
-            // {
-            //     
-            // }
+
         }
         else
         {

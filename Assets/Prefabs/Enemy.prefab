@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1283524977}
   - component: {fileID: 1283524978}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Pet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 1864799172854658019}
   - component: {fileID: 1864799172854658018}
   - component: {fileID: 1864799172854658016}
-  m_Layer: 6
+  - component: {fileID: 2136778331}
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,12 +222,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 192
   groundCheck: {fileID: 1864799173820397190}
   groundCheckRadius: 0.2
   moveSpeed: 5
   jumpSpeed: 6
   doubleJump: 0
+--- !u!61 &2136778331
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864799172854658022}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: b26525811bb727c46b2c100b7f76e04c, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.005083859, y: -0.018633366}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.68479717, y: 0.8135748}
+  m_EdgeRadius: 0
 --- !u!1 &1864799173386566294
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1864799173386566295}
   - component: {fileID: 1864799173386566288}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: CurrentlySelected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1864799173820397190}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}

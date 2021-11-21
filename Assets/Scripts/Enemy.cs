@@ -92,6 +92,10 @@ public class Enemy : MonoBehaviour
                 player.AddPetEnemy(this);
                 this.enabled = false; // disable the script
             }
+            else
+            {
+                player.DecrementHp();
+            }
         }
     }
 }
