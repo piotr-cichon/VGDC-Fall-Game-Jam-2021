@@ -88,6 +88,11 @@ public class Player : MonoBehaviour
             _ballThrowPower = initialSpeed;
         }
     }
+
+    public bool OnGround()
+    {
+        return _movement.CheckGround();
+    }
     private void EnablePlayer()
     {
         _petIndex = 0;
