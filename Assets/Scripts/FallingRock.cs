@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class FallingRock : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class FallingRock : MonoBehaviour
     private Vector3 _rockSpeed, _initialPosition;
     private bool _hasStartedCoroutine = false;
     private Animator rockAnimator;
+    private static readonly int OnIdle = Animator.StringToHash("OnIdle");
+    private static readonly int OnHitBottom = Animator.StringToHash("OnHitBottom");
+    private static readonly int OnFall = Animator.StringToHash("OnFall");
+
     private void Awake()
     {
         rockAnimator = GetComponent<Animator>();
@@ -23,9 +28,9 @@ public class FallingRock : MonoBehaviour
 
     void Start()
     {
-        rockAnimator.SetBool("OnIdle", false);
-        rockAnimator.SetBool("OnHitBottom", false);
-        rockAnimator.SetBool("OnFall", true);
+        rockAnimator.SetBool(OnIdle, false);
+        rockAnimator.SetBool(OnHitBottom, false);
+        rockAnimator.SetBool(OnFall, true);
     }
 
     IEnumerator WaitRock(int numberSeconds, float newAcceleration, float newSpeedY, bool onFallNew, bool onHitBottomNew)
@@ -35,14 +40,14 @@ public class FallingRock : MonoBehaviour
         yield return new WaitForSeconds(numberSeconds);
         _rockSpeed.y = newSpeedY;
         _rockAccelerationY = newAcceleration;
-        rockAnimator.SetBool("OnHitBottom", onHitBottomNew);
-        rockAnimator.SetBool("OnFall", onFallNew);
+        rockAnimator.SetBool(OnHitBottom, onHitBottomNew);
+        rockAnimator.SetBool(OnFall, onFallNew);
         print("Am iesit din corutina");
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        rockAnimator.SetBool("OnFall", false);
-        rockAnimator.SetBool("OnHitBottom", true);
+        rockAnimator.SetBool(OnFall, false);
+        rockAnimator.SetBool(OnHitBottom, true);
         print("Am intrat in trigger enter");
         StartCoroutine(WaitRock(2, 0f, -initialRockSpeedY, false, true));
         _hasStartedCoroutine = false;
@@ -50,7 +55,7 @@ public class FallingRock : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        rockAnimator.SetBool("OnHitBottom", false);
+        rockAnimator.SetBool(OnHitBottom, false);
     }
 
     // Update is called once per frame
@@ -61,8 +66,8 @@ public class FallingRock : MonoBehaviour
 
         if (_hasStartedCoroutine == false && transform.position.y >= _initialPosition.y)
         {
-            rockAnimator.SetBool("OnHitBottom", false);
-            rockAnimator.SetBool("OnFall", false);
+            rockAnimator.SetBool(OnHitBottom, false);
+            rockAnimator.SetBool(OnFall, false);
             _hasStartedCoroutine = true;
             StartCoroutine(WaitRock(2, initialRockAccelerationY, initialRockSpeedY, true, false));
         }
