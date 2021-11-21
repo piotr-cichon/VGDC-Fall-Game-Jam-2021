@@ -17,9 +17,9 @@ public class Fruit : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.collider.GetComponent<Player>() != null)
+        if (other.GetComponent<Player>() != null)
         {
             other.gameObject.GetComponent<Player>().IncrementScore();
             Destroy(this.gameObject);
