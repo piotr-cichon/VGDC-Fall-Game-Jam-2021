@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private float _xForce;
     private SpriteRenderer _sprite;
     private Movement _movement;
+    private Rigidbody2D _rb;
     
     private Transform _shootingTransform;
     private float _ballThrowPower;
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
         _ballThrowPower = initialSpeed;
         _xForce = defaultXForce;
+        _rb = GetComponent<Rigidbody2D>();
         
         _cinemachine = FindObjectOfType<CinemachineVirtualCamera>();
     }
@@ -95,6 +97,7 @@ public class Player : MonoBehaviour
     }
     private void EnablePlayer()
     {
+        _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         _petIndex = 0;
         _cinemachine.Follow = transform;
         _movement.enabled = true;
@@ -102,6 +105,7 @@ public class Player : MonoBehaviour
 
     private void DisablePlayer()
     {
+        _rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         _movement.enabled = false;
     }
 

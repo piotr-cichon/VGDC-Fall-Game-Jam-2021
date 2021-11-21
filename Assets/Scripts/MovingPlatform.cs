@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
+    [SerializeField] private bool canBeOnTriggerEnted = false;
     [SerializeField] private float speed = 1.5f;
     [SerializeField] private float length = 3f;
     [SerializeField] private bool useLengthOffsed = false;
@@ -17,9 +18,10 @@ public class MovingPlatform : MonoBehaviour
 
     private void AdjustLength(ref Vector3 v)
     {
-        if(useLengthOffsed)
+        if (useLengthOffsed)
             v -= new Vector3(length, 0, 0);
     }
+
     void Awake()
     {
         if (startLeft)
@@ -34,8 +36,8 @@ public class MovingPlatform : MonoBehaviour
             AdjustLength(ref _startPos);
             _endPos = positionLeft.position;
         }
-        _nextPos = _startPos;
 
+        _nextPos = _startPos;
     }
 
     void Update()
@@ -58,21 +60,42 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        print("Collision here");
         Player player = other.gameObject.GetComponent<Player>();
-        if (player != null)
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (player != null || enemy != null)
         {
-            player.transform.SetParent(transform);
+            other.transform.SetParent(transform);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         Player player = other.gameObject.GetComponent<Player>();
-        if (player != null)
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (player != null || enemy != null)
         {
-            player.transform.SetParent(null);
+            other.transform.SetParent(null);
         }
     }
     
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        print("Collision here with platform on trigger enter" + other.gameObject.name);
+        Player player = other.gameObject.GetComponent<Player>();
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (player != null || enemy != null)
+        {
+            other.transform.SetParent(transform);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Player player = other.gameObject.GetComponent<Player>();
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
+        if (player != null || enemy != null)
+        {
+            other.transform.SetParent(null);
+        }
+    }
 }

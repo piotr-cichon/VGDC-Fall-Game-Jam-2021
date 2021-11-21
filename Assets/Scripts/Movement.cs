@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
         _horizontalMovement = Input.GetAxisRaw("Horizontal");
         _isGrounded = CheckGround();
 
-        if (((_isGrounded || ( doubleJump && _jumpCount < 2 && _rb.velocity.y > -0.1f)) &&
+        if (((_isGrounded || ( doubleJump && _jumpCount < 2 && _rb.velocity.y > -1.5f)) &&
             Input.GetKeyDown(KeyCode.Space)))
         {
             _jumpCount++;
