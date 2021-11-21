@@ -82,7 +82,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private bool CheckGround()
+    public bool CheckGround()
     {
         var colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer);
         if (colliders.Length > 0)
