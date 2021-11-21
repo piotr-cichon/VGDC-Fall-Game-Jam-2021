@@ -106,8 +106,8 @@ public class Enemy : MonoBehaviour
             }
             else if(_dealDamageToPlayer == false)
             {
+                print("Herererdfs");
                 _dealDamageToPlayer = true;
-                other.gameObject.GetComponent<Player>().DecrementHp();
                 other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 player.DecrementHp();
                 StartCoroutine(ResetDecrement(other.gameObject));
