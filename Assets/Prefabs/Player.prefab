@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7615706853353606961}
   - component: {fileID: 7615706853353606926}
   - component: {fileID: 1543620858}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -6367560908665664636, guid: f0491420e41a0f54bbb714c552e7990f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9716981, g: 0.95703095, b: 0.95703095, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 192
   groundCheck: {fileID: 7615706854587102024}
   groundCheckRadius: 0.2
   moveSpeed: 5
@@ -211,12 +211,13 @@ MonoBehaviour:
   changePet: 99
   resetPlayer: 112
   initialSpeed: 100
-  increment: 100
-  maxSpeed: 200
+  increment: 300
+  maxSpeed: 900
   bullet: {fileID: 369357552785208760, guid: 184d9242f8d254a41b17e75c2ba88594, type: 3}
   shootingTransformRight: {fileID: 8069404444738519763}
   shootingTransformLeft: {fileID: 4459431724255876979}
   hp: 3
+  _heartArray: {fileID: 0}
   defaultXForce: 100
 --- !u!1 &7615706854587102027
 GameObject:
@@ -227,7 +228,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7615706854587102024}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
