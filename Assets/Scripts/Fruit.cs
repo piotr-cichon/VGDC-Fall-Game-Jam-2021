@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
+    [SerializeField] private int points;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class Fruit : MonoBehaviour
     {
         if (other.GetComponent<Player>() != null)
         {
-            other.gameObject.GetComponent<Player>().IncrementScore();
+            other.gameObject.GetComponent<Player>().IncrementScore(points);
             Destroy(this.gameObject);
         }
     }

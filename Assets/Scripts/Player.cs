@@ -167,8 +167,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void IncrementScore()
+    public void IncrementScore(int points)
     {
-        _score++;
+        _score += points;
     }
 }
