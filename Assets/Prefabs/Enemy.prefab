@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1283524977}
   - component: {fileID: 1283524978}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Pet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1864799172854658018}
   - component: {fileID: 1864799172854658017}
   - component: {fileID: 1864799172854658016}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1864799173386566295}
   - component: {fileID: 1864799173386566288}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: CurrentlySelected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1864799173820397190}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
