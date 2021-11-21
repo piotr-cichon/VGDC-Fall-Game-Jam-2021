@@ -39,10 +39,13 @@ public class Player : MonoBehaviour
 
     private CinemachineVirtualCamera _cinemachine;
 
-    private int _score;
+    private int _bananas = 0;
+    private int _apples = 0;
+    private FruitManager _fruitManager;
 
     private void Awake()
     {
+        _fruitManager = FindObjectOfType<FruitManager>();
         _movement = GetComponent<Movement>();
         _sprite = GetComponent<SpriteRenderer>();
         _ballThrowPower = initialSpeed;
@@ -167,8 +170,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void IncrementScore()
+    public void IncrementScore(int points,Fruit.FruitType fruitType)
     {
-        _score++;
+
+        if (fruitType == Fruit.FruitType.Apple)
+        {
+            _apples++;
+            _fruitManager.AddApple();
+        }
+        else if (fruitType == Fruit.FruitType.Banana)
+        {
+            _bananas++;
+            _fruitManager.AddBanana();
+        }
     }
 }

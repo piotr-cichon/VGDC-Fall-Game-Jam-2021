@@ -11,7 +11,8 @@ public class FlagWon : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private bool _animFinished = false;
     private static readonly int Roll = Animator.StringToHash("roll");
-
+    private bool _started = false;
+    
     private IEnumerator Wait()
     {
         yield return new WaitForSeconds(roll.length + 0.1f);
@@ -29,8 +30,9 @@ public class FlagWon : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
          _player = other.GetComponent<Player>();
-        if (_player != null)
+        if (_player != null && !_started)
         {
+            _started = true;
             _player.GetComponent<Movement>().enabled = false;
             _rigidbody = _player.GetComponent<Rigidbody2D>();
             _rigidbody.AddForce(new Vector2(0,yForce),ForceMode2D.Impulse);
