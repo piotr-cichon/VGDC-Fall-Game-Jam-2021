@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -45,6 +46,16 @@ public class Player : MonoBehaviour
         _cinemachine = FindObjectOfType<CinemachineVirtualCamera>();
     }
 
+    private IEnumerator SwitchSceneAgain()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+    public void Die()
+    {
+        print("Die");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+    }
     public void AddPetEnemy(Enemy enemy)
     {
         _pets.Add(enemy);
@@ -142,7 +153,7 @@ public class Player : MonoBehaviour
         hp--;
         if (hp == 0)
         {
-            Destroy(this.gameObject);
+            Die();
         }
     }
 }

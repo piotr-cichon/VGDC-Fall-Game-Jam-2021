@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class FallingRock : MonoBehaviour
 {
+    [SerializeField] private float playerHeight = 2f;
+    [SerializeField] private LayerMask ground;
+    [SerializeField] private Transform groundCheck;
     // Start is called before the first frame update
     [SerializeField] private float initialRockSpeedY = -10f;
     [SerializeField] private float initialRockAccelerationY = -0.1f;
@@ -46,11 +49,28 @@ public class FallingRock : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        rockAnimator.SetBool(OnFall, false);
-        rockAnimator.SetBool(OnHitBottom, true);
-        print("Am intrat in trigger enter");
-        StartCoroutine(WaitRock(2, 0f, -initialRockSpeedY, false, true));
-        _hasStartedCoroutine = false;
+        Player player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            if (transform.position.y > player.transform.position.y)
+            {
+                player.Die();
+                print("Hit player");
+            }
+            // if (Physics2D.Raycast(groundCheck.position, Vector2.down, playerHeight, ground))
+            // {
+            //     
+            // }
+        }
+        else
+        {
+            rockAnimator.SetBool(OnFall, false);
+            rockAnimator.SetBool(OnHitBottom, true);
+            StartCoroutine(WaitRock(2, 0f, -initialRockSpeedY, false, true));
+            _hasStartedCoroutine = false;
+            print("Am intrat in trigger enter");
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D other)
