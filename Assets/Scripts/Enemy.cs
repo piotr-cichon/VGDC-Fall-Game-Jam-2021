@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private float waitTimeForDamage = 0.5f;
     [SerializeField] private int deviation;
     [SerializeField] private double height;
     [SerializeField] private bool canBePetted = true;
@@ -21,6 +22,8 @@ public class Enemy : MonoBehaviour
     private int _direction;
     private SpriteRenderer _spriteRenderer;
     private bool _pet;
+
+    private bool _dealDamageToPlayer;
 
     void Start()
     {
@@ -70,6 +73,15 @@ public class Enemy : MonoBehaviour
         _movement.enabled = false;
         selectedImage.enabled = false;
     }
+    
+    private IEnumerator ResetDecrement(GameObject player)
+    {
+        yield return new WaitForSeconds(waitTimeForDamage);
+        _dealDamageToPlayer = false;
+        if(player != null)
+            player.GetComponent<SpriteRenderer>().color = Color.white;
+
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (canBePetted && !_pet && other.collider.GetComponent<Player>() != null)
@@ -92,9 +104,13 @@ public class Enemy : MonoBehaviour
                 player.AddPetEnemy(this);
                 this.enabled = false; // disable the script
             }
-            else
+            else if(_dealDamageToPlayer == false)
             {
+                _dealDamageToPlayer = true;
+                other.gameObject.GetComponent<Player>().DecrementHp();
+                other.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 player.DecrementHp();
+                StartCoroutine(ResetDecrement(other.gameObject));
             }
         }
     }
