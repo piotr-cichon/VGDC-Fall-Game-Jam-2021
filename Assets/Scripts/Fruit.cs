@@ -5,23 +5,20 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum FruitType
     {
-        
+        Banana,
+        Apple,
     }
+    [SerializeField] private int points;
+    [SerializeField] private FruitType type;
+    
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.GetComponent<Player>() != null)
+        if (other.GetComponent<Player>() != null)
         {
-            other.gameObject.GetComponent<Player>().IncrementScore();
+            other.gameObject.GetComponent<Player>().IncrementScore(points,type);
             Destroy(this.gameObject);
         }
     }
